@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Báo cáo tuân thủ vnFace",
+  "version": "1.0",
+  "description": "Báo cáo tuân thủ vnFace",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tab"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://console-vnface.vnpt.vn/*"
+      ],
+      "js": [
+        "xlsx.min.js"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "https://api-vnface.vnpt.vn/*",
+    "https://console-vnface.vnpt.vn/*"
+  ]
+}
