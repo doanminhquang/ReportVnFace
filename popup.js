@@ -6,8 +6,16 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('monthInput').value = currentMonth < 10 ? '0' + currentMonth : currentMonth;
     document.getElementById('yearInput').value = currentYear;
     
-    document.getElementById('firstCheckinTime').value = '07:30';
-    document.getElementById('lastCheckinTime').value = '17:00';
+    document.getElementById('firstCheckinTime').value = localStorage.getItem('firstCheckinTime') || '07:30';
+    document.getElementById('lastCheckinTime').value = localStorage.getItem('lastCheckinTime') || '17:00';
+
+    document.getElementById('firstCheckinTime').addEventListener('change', function(e) {
+        localStorage.setItem('firstCheckinTime', e.target.value);
+    });
+
+    document.getElementById('lastCheckinTime').addEventListener('change', function(e) {
+        localStorage.setItem('lastCheckinTime', e.target.value);
+    });
 });
 
 document.getElementById('fetchDataBtn').addEventListener('click', function () {
