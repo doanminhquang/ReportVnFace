@@ -12,6 +12,12 @@
   <div class="container">
     <h1>Báo cáo tuân thủ vnFace</h1>
     <div class="form-group">
+      <label>Giờ vào ca:</label>
+      <input type="time" id="firstCheckinTime" value="07:30" />
+      <label>Giờ tan ca:</label>
+      <input type="time" id="lastCheckinTime" value="17:00" />
+    </div>
+    <div class="form-group">
       <label for="monthInput">Chọn tháng:</label>
       <select id="monthInput" name="month" required>
         <option value="01">Tháng 1</option>
@@ -32,7 +38,7 @@
       <label for="yearInput">Chọn năm:</label>
       <input type="number" id="yearInput" name="year" min="2000" max="2030" value="" required>
     </div>
-    <button id="fetchDataBtn">Xuất báo cáo</button>
+    <button id="fetchDataBtn">Tải dữ liệu</button>
   </div>
   <script src="popup.js"></script>
 </body>

@@ -1,16 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
     const now = new Date();
-
     const currentMonth = now.getMonth() + 1;
     const currentYear = now.getFullYear();
 
     document.getElementById('monthInput').value = currentMonth < 10 ? '0' + currentMonth : currentMonth;
     document.getElementById('yearInput').value = currentYear;
+    
+    document.getElementById('firstCheckinTime').value = '07:30';
+    document.getElementById('lastCheckinTime').value = '17:00';
 });
 
 document.getElementById('fetchDataBtn').addEventListener('click', function () {
     const month = document.getElementById('monthInput').value;
     const year = document.getElementById('yearInput').value;
+    const firstCheckinTime = document.getElementById('firstCheckinTime').value;
+    const lastCheckinTime = document.getElementById('lastCheckinTime').value;
 
     if (month && year) {
         chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -20,7 +24,7 @@ document.getElementById('fetchDataBtn').addEventListener('click', function () {
                     chrome.scripting.executeScript({
                         target: { tabId: tab.id },
                         func: fetchCheckinDataForMonthAndYear,
-                        args: [month, year]
+                        args: [month, year, firstCheckinTime, lastCheckinTime]
                     });
 
                     window.close();
@@ -31,9 +35,14 @@ document.getElementById('fetchDataBtn').addEventListener('click', function () {
     }
 });
 
-async function fetchCheckinDataForMonthAndYear(month, year) {
-    const FirstCheckinMinutes = 450;
-    const LastCheckinMinutes = 1020;
+async function fetchCheckinDataForMonthAndYear(month, year, firstCheckinTime, lastCheckinTime) {
+    function convertTimeToMinutes(timeStr) {
+        const [hours, minutes] = timeStr.split(':').map(Number);
+        return hours * 60 + minutes;
+    }
+
+    const FirstCheckinMinutes = convertTimeToMinutes(firstCheckinTime);
+    const LastCheckinMinutes = convertTimeToMinutes(lastCheckinTime);
 
     function createCellStyle(fontSize, isBold, fillColor) {
         return {
