@@ -188,7 +188,7 @@ async function fetchCheckinDataForMonthAndYear(month, year, firstCheckinTime, la
         const totalDays = lastDay.getDate();
     
         let calendar = [headers];
-        let currentWeek = Array(7).fill(createCell('', 11, false, 'FFFFFF'));
+        let currentWeek = Array(7).fill(createCell('', 11, false, 'EEEEEE')); 
         let dayOfWeek = firstDay.getDay();
         dayOfWeek = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
     
@@ -216,7 +216,7 @@ async function fetchCheckinDataForMonthAndYear(month, year, firstCheckinTime, la
     
             if (dayOfWeek === 6 || day === totalDays) {
                 calendar.push([...currentWeek]);
-                currentWeek = Array(7).fill(createCell('', 11, false, 'FFFFFF'));
+                currentWeek = Array(7).fill(createCell('', 11, false, 'EEEEEE'));
             }
     
             dayOfWeek = (dayOfWeek + 1) % 7;
