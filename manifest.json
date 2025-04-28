@@ -6,7 +6,10 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "tab"
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://console-vnface.vnpt.vn/*"
   ],
   "icons": {
     "16": "icons/icon16.png",
@@ -30,9 +33,5 @@
         "xlsx.min.js"
       ]
     }
-  ],
-  "host_permissions": [
-    "https://api-vnface.vnpt.vn/*",
-    "https://console-vnface.vnpt.vn/*"
   ]
 }
